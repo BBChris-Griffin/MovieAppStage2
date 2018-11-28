@@ -147,14 +147,10 @@ public class MovieInfo extends AppCompatActivity {
         if(!FindFavoriteMovie(movie))
         {
             mFavoriteList.add(movieList.get(index));
-//            database = (MovieDatabase) getIntent().getSerializableExtra("MOVIE_DATABASE");
-//            database.addData(String.valueOf(movie.getId()));
-//            Toast.makeText(this, "Movie Favorited", Toast.LENGTH_SHORT).show();
         }
         else
         {
             mFavoriteList.remove(movie);
-//            Toast.makeText(this, "Movie Unfavorited", Toast.LENGTH_SHORT).show();
         }
         Toast.makeText(this, "Action Complete", Toast.LENGTH_SHORT).show();
         newID = String.valueOf(movie.getId());
@@ -174,7 +170,6 @@ public class MovieInfo extends AppCompatActivity {
 
     private void OnPlayTrailerClick(String link)
     {
-        //String link = "https://www.youtube.com/watch?v=" + trailerList.get(i);
         Intent youtubeIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
         try {
             this.startActivity(youtubeIntent);

@@ -11,7 +11,7 @@ import android.util.Log;
 import java.io.Serializable;
 
 public class MovieDatabase extends SQLiteOpenHelper implements Serializable {
-    public static final String TAG = "Deez";
+    public static final String TAG = "Taggefied";
     public static final String TABLE_NAME = "Movie_Database";
     public static final String COL1 = "Movie_Title";
     public static final String COL2 = "Movie_ID";

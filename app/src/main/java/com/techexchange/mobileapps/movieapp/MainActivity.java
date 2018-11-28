@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String TAG = "Deez";
+    public static final String TAG = "Taggefied";
     public static final String SHARED_PREFS_FILE_NAME = "Favorite Movie List";
     public static final String FAVORITE_LIST_KEY = "Favorite List Key";
     private boolean displayView = false;
@@ -68,11 +68,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "Creation");
 
         if(newID != "")
         {
-            Log.d(TAG, String.valueOf(newID));
             database.addData(newID);
             newID = "";
         }
@@ -108,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> tempData = new ArrayList<>();
         while(data.moveToNext())
         {
-            Log.d(TAG, "DAta");
             tempData.add(data.getString(1));
         }
         return tempData;
@@ -119,11 +116,8 @@ public class MainActivity extends AppCompatActivity {
         mFavoriteList.clear();
         for(int i = 0; i < idList.size(); i++)
         {
-            Log.d(TAG, String.valueOf(idList.size()));
             for(int j = 0; j < mPopularList.size(); j++)
             {
-                Log.d(TAG, String.valueOf(mPopularList.get(j).getId()));
-
                 if(idList.get(i).equals(String.valueOf(mPopularList.get(j).getId())))
                 {
                     mFavoriteList.add(mPopularList.get(j));
@@ -148,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        Log.d(TAG, String.valueOf(mFavoriteList.size()));
     }
 
     public boolean isOnline() {
@@ -181,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Log.d(TAG, "g");
 
         if (id == R.id.pop_movies) {
             InitRecyclerView(mPopularList, false);
@@ -193,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.fav_movies) {
-            Log.d(TAG, "g");
             InitRecyclerView(mFavoriteList, true);
             savedList = 2;
         }
@@ -214,17 +205,12 @@ public class MainActivity extends AppCompatActivity {
                 if(NetworkUtils.networkStatus(MainActivity.this)){
                     mPopularList = NetworkUtils.fetchData(popularMoviesURL); //Get popular movies
                     mTopTopRatedList = NetworkUtils.fetchData(ratedMoviesURL); //Get top rated movies
-                    Log.d(TAG, String.valueOf(mPopularList.size()));
 
                 }else{
                     Toast.makeText(MainActivity.this,"No Internet Connection", Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "Fuck");
-
                 }
             } catch (IOException e){
                 e.printStackTrace();
-                Log.d(TAG, "Fuck Me");
-
             }
             displayView = true;
             return null;
